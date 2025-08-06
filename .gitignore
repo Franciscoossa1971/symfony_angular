@@ -1,0 +1,53 @@
+# =======================================
+# Symfony
+# =======================================
+/var/
+/vendor/
+/.env.local
+/.env.*.local
+/public/bundles/
+/node_modules/
+.phpunit.result.cache
+/.php-cs-fixer.cache
+
+# Ignore logs and cache
+/var/log/
+/var/cache/
+
+# Ignore IDE configs
+/.idea/
+/.vscode/
+*.swp
+
+# =======================================
+# Angular
+# =======================================
+/frontend/node_modules/
+/frontend/dist/
+/frontend/.angular/cache/
+/frontend/.angular/config.json
+/frontend/.env
+/frontend/.env.local
+
+# =======================================
+# Docker
+# =======================================
+*.pid
+*.log
+docker-compose.override.yml
+.env
+.env.dev
+
+# Ignore Docker volumes or db data (if mounted)
+/db-data/
+/pgdata/
+/postgres-data/
+
+# =======================================
+# Misc
+# =======================================
+.DS_Store
+Thumbs.db
+*.bak
+*.tmp
+*.log
