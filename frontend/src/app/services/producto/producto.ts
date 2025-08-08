@@ -1,8 +1,6 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { catchError } from 'rxjs/operators';
-
 
 interface Producto {
   id: number;
@@ -19,52 +17,23 @@ export class ProductoService {
 
   constructor(private http: HttpClient) {}
 
-  // Obtener todos los productos
   getProductos(): Observable<Producto[]> {
-    return this.http.get<Producto[]>(this.apiUrl).pipe(
-      catchError(this.handleError)
-    );
+    return this.http.get<Producto[]>(this.apiUrl);
   }
 
-  // Obtener un producto por ID
   getProducto(id: number): Observable<Producto> {
-    return this.http.get<Producto>(`${this.apiUrl}/${id}`).pipe(
-      catchError(this.handleError)
-    );
+    return this.http.get<Producto>(`${this.apiUrl}/${id}`);
   }
 
-  // Crear un nuevo producto
-  createProducto(producto: Producto): Observable<Producto> {
-    return this.http.post<Producto>(this.apiUrl, producto, {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-      }),
-    }).pipe(
-      catchError(this.handleError)
-    );
+  crearProducto(producto: Producto): Observable<Producto> {
+    return this.http.post<Producto>(this.apiUrl, producto);
   }
 
-  // Actualizar un producto existente
-  updateProducto(id: number, producto: Producto): Observable<Producto> {
-    return this.http.put<Producto>(`${this.apiUrl}/${id}`, producto, {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-      }),
-    }).pipe(
-      catchError(this.handleError)
-    );
+  actualizarProducto(id: number, producto: Producto): Observable<Producto> {
+    return this.http.put<Producto>(`${this.apiUrl}/${id}`, producto);
   }
 
-  // Eliminar un producto
-  deleteProducto(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/${id}`).pipe(
-      catchError(this.handleError)
-    );
-  }
-
-  // Manejo de errores
-  private handleError(error: any): Observable<never> {
-    console.error('Error en la solicitud', error);
-    throw error;
+  eliminarProducto(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 }
